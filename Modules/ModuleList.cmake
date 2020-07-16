@@ -81,6 +81,7 @@ set(MITK_MODULES
   REST
   RESTService
   DICOMweb
+  DeepLearningSegmentation
 )
 
 if(MITK_ENABLE_PIC_READER)

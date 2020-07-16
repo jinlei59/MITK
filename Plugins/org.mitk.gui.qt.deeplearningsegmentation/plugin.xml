@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+
+  <extension point="org.blueberry.ui.views">
+    <view id="org.mitk.views.deeplearningsegmentationview"
+          name="Deep Learning Segmentation View"
+          class="DeepLearningSegmentationView"
+		  category="Segmentation"
+          icon="resources/icon.xpm" />
+  </extension>
+
+</plugin>

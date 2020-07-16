@@ -1,0 +1,4 @@
+mitk_create_module(BoneSegmentation
+  DEPENDS MitkPython MitkDeepLearningSegmentation
+  AUTOLOAD_WITH MitkDeepLearningSegmentation
+)
