@@ -21,9 +21,13 @@ found in the LICENSE file.
 // Qt
 #include <QMessageBox>
 #include<QToolButton>
+#include<QComboBox>
+#include<QFileDialog>
 
 // mitk image
 #include <mitkImage.h>
+#include <mitkIOUtil.h>
+
 #include <usModule.h>
 #include <usServiceTracker.h>
 #include <usModuleRegistry.h>
@@ -49,7 +53,19 @@ void DeepLearningSegmentationView::CreateQtPartControl(QWidget *parent)
   // create GUI widgets from the Qt Designer's .ui file
   m_Controls.setupUi(parent);
   CreateSegmentationMethodsSelection();
+
+  m_Controls.m_ImageSelector->SetDataStorage(GetDataStorage());
+  m_Controls.m_ImageSelector->SetPredicate(GetImagePredicate());
+
+  m_Controls.buttonPerformImageProcessing->setEnabled(false);
+
+    connect(this->m_Controls.m_ImageSelector,
+          static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+          this,
+          &DeepLearningSegmentationView::OnImageSelectorChanged);
+  connect(m_Controls.buttonLoadTrainedNetwork, &QPushButton::clicked, this, &DeepLearningSegmentationView::DoLoadTrainedNet);
   connect(m_Controls.buttonPerformImageProcessing, &QPushButton::clicked, this, &DeepLearningSegmentationView::DoImageProcessing);
+
 }
 
 void DeepLearningSegmentationView::CreateSegmentationMethodsSelection() 
@@ -89,61 +105,60 @@ void DeepLearningSegmentationView::CreateSegmentationMethodsSelection()
   m_Controls.m_SegmentationMethods->setLayout(vbox);
 }
 
-void DeepLearningSegmentationView::OnSelectionChanged(berry::IWorkbenchPart::Pointer /*source*/,
-                                                const QList<mitk::DataNode::Pointer> &nodes)
+void DeepLearningSegmentationView::OnImageSelectorChanged()
 {
-  // iterate all selected objects, adjust warning visibility
-  foreach (mitk::DataNode::Pointer node, nodes)
+  auto selectedImageNode = m_Controls.m_ImageSelector->GetSelectedNode();
+  if (selectedImageNode != m_selectedImageNode)
   {
-    if (node.IsNotNull() && dynamic_cast<mitk::Image *>(node->GetData()))
+    m_selectedImageNode = selectedImageNode;
+    if (m_selectedImageNode.IsNotNull())
     {
-      m_Controls.labelWarning->setVisible(false);
-      m_Controls.buttonPerformImageProcessing->setEnabled(true);
+      m_Controls.labelImageWarning->setVisible(false);
+      if (m_TrainedNet != "")
+      {
+        m_Controls.buttonPerformImageProcessing->setEnabled(true);
+      }
       return;
     }
+    m_Controls.labelImageWarning->setText("Please select an image!");
+    m_Controls.labelImageWarning->setVisible(true);
+    m_Controls.buttonPerformImageProcessing->setEnabled(false);
   }
+}
 
-  m_Controls.labelWarning->setVisible(true);
-  m_Controls.buttonPerformImageProcessing->setEnabled(false);
+void DeepLearningSegmentationView::DoLoadTrainedNet()
+{
+  QString tempPath = QString::fromStdString(mitk::IOUtil::GetTempPathA());
+  QString pretrainedNetResourcesPath =
+    QFileDialog::getOpenFileName(nullptr, tr("Open File"), tempPath, tr("Images (*.pth.tar)"));
+
+  m_TrainedNet = pretrainedNetResourcesPath.toStdString();
+
+  if (m_TrainedNet != "")
+  {
+    m_Controls.labelWarning_2->setVisible(false);
+    if (m_selectedImageNode.IsNotNull())
+    {
+      m_Controls.buttonPerformImageProcessing->setEnabled(true);
+    }
+  }
 }
 
 void DeepLearningSegmentationView::DoImageProcessing()
 {
-  QList<mitk::DataNode::Pointer> nodes = this->GetDataManagerSelection();
-  if (nodes.empty())
-    return;
 
-  mitk::DataNode *node = nodes.front();
+}
 
-  if (!node)
-  {
-    // Nothing selected. Inform the user and return
-    QMessageBox::information(nullptr, "Template", "Please load and select an image before starting image processing.");
-    return;
-  }
+mitk::NodePredicateBase::Pointer DeepLearningSegmentationView::GetImagePredicate()
+{
+  auto isImage = mitk::NodePredicateDataType::New("Image");
+  auto hasBinaryProperty = mitk::NodePredicateProperty::New("binary", mitk::BoolProperty::New(true));
+  auto isNotBinary = mitk::NodePredicateNot::New(hasBinaryProperty);
+  auto isNotBinaryImage = mitk::NodePredicateAnd::New(isImage, isNotBinary);
+  auto hasHelperObjectProperty = mitk::NodePredicateProperty::New("helper object", nullptr);
+  auto isNoHelperObject = mitk::NodePredicateNot::New(hasHelperObjectProperty);
+  auto isNoHelperObjectPredicate = isNoHelperObject.GetPointer();
 
-  // here we have a valid mitk::DataNode
-
-  // a node itself is not very useful, we need its data item (the image)
-  mitk::BaseData *data = node->GetData();
-  if (data)
-  {
-    // test if this data item is an image or not (could also be a surface or something totally different)
-    mitk::Image *image = dynamic_cast<mitk::Image *>(data);
-    if (image)
-    {
-      std::stringstream message;
-      std::string name;
-      message << "Performing image processing for image ";
-      if (node->GetName(name))
-      {
-        // a property called "name" was found for this DataNode
-        message << "'" << name << "'";
-      }
-      message << ".";
-      MITK_INFO << message.str();
-
-      // actually do something here...
-    }
-  }
+  auto isImageForImageStatistics = mitk::NodePredicateAnd::New(isNotBinaryImage, isNoHelperObjectPredicate);
+  return isImageForImageStatistics.GetPointer();
 }

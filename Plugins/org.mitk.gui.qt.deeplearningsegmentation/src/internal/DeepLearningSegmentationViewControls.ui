@@ -21,7 +21,14 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="labelWarning">
+    <widget class="QGroupBox" name="m_SegmentationMethods">
+     <property name="title">
+      <string>Deep Learning Segmentation Methods</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelImageWarning">
      <property name="styleSheet">
       <string notr="true">QLabel { color: rgb(255, 0, 0) }</string>
      </property>
@@ -31,9 +38,22 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="m_SegmentationMethods">
-     <property name="title">
-      <string>Deep Learning Segmentation Methods</string>
+    <widget class="QLabel" name="labelWarning_2">
+     <property name="styleSheet">
+      <string notr="true">QLabel { color: rgb(255, 0, 0) }</string>
+     </property>
+     <property name="text">
+      <string>Please select a trained network!</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QmitkDataStorageComboBoxWithSelectNone" name="m_ImageSelector"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonLoadTrainedNetwork">
+     <property name="text">
+      <string>Load trained network</string>
      </property>
     </widget>
    </item>
@@ -43,7 +63,7 @@
       <string>Do image processing</string>
      </property>
      <property name="text">
-      <string>Do Something</string>
+      <string>Start segmentation</string>
      </property>
     </widget>
    </item>
@@ -66,6 +86,13 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QmitkDataStorageComboBoxWithSelectNone</class>
+   <extends>QComboBox</extends>
+   <header location="global">QmitkDataStorageComboBoxWithSelectNone.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

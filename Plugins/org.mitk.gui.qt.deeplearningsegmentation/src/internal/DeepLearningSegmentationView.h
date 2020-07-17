@@ -20,6 +20,12 @@ found in the LICENSE file.
 
 #include "ui_DeepLearningSegmentationViewControls.h"
 
+#include <mitkNodePredicateAnd.h>
+#include <mitkNodePredicateOr.h>
+#include <mitkNodePredicateDataType.h>
+#include <mitkNodePredicateProperty.h>
+#include <mitkNodePredicateNot.h>
+
 /**
   \brief DeepLearningSegmentationView
 
@@ -45,13 +51,19 @@ protected:
   virtual void SetFocus() override;
 
   /// \brief called by QmitkFunctionality when DataManager's selection has changed
-  virtual void OnSelectionChanged(berry::IWorkbenchPart::Pointer source,
-                                  const QList<mitk::DataNode::Pointer> &nodes) override;
+  void OnImageSelectorChanged();
 
   /// \brief Called when the user clicks the GUI button
   void DoImageProcessing();
 
+  mitk::NodePredicateBase::Pointer GetImagePredicate();
+
+  void DoLoadTrainedNet();
+
   Ui::DeepLearningSegmentationViewControls m_Controls;
+
+  mitk::DataNode::Pointer m_selectedImageNode = nullptr;
+  std::string m_TrainedNet;
 };
 
 #endif // DeepLearningSegmentationView_h
