@@ -20,6 +20,7 @@ found in the LICENSE file.
 
 // Qt
 #include <QMessageBox>
+#include<QToolButton>
 
 // mitk image
 #include <mitkImage.h>
@@ -28,6 +29,8 @@ found in the LICENSE file.
 #include <usModuleRegistry.h>
 #include <usGetModuleContext.h>
 #include <usModuleInitialization.h>
+#include <usModuleResource.h>
+#include <usModuleResourceStream.h>
 #include <mitkStandardFileLocations.h>
 
 #include<mitkIDeepLearningSegmentation.h>
@@ -52,7 +55,7 @@ void DeepLearningSegmentationView::CreateQtPartControl(QWidget *parent)
 void DeepLearningSegmentationView::CreateSegmentationMethodsSelection() 
 {
   auto *context = us::GetModuleContext();
-
+  mitk::IDeepLearningSegmentation::ForceLoadModule();
   auto segmentationServiceRefs = context->GetServiceReferences<mitk::IDeepLearningSegmentation>();
   QVBoxLayout *vbox = new QVBoxLayout;
   for (auto ref : segmentationServiceRefs)
@@ -62,11 +65,26 @@ void DeepLearningSegmentationView::CreateSegmentationMethodsSelection()
     mitk::IDeepLearningSegmentation *segmentationService = dynamic_cast<mitk::IDeepLearningSegmentation *>(
       context->GetService<mitk::IDeepLearningSegmentation>(ref));
 
-    std::string buttonText = "&" + name;
-    QPushButton *toggleButton = new QPushButton(tr(buttonText.c_str()));
-    toggleButton->setCheckable(true);
-    toggleButton->setChecked(true);
-    vbox->addWidget(toggleButton);
+    QToolButton *button = new QToolButton();
+    auto resource = ref.GetModule()->GetResource("icon.svg");
+    if(resource.IsValid())
+    {
+      us::ModuleResourceStream rs(resource, std::ios_base::binary);
+      rs.seekg(0, std::ios::end);
+      int filesize = rs.tellg();
+      rs.seekg(0, ios::beg);
+      char *output = new char[filesize];
+      rs.read(output, filesize);
+      QByteArray byt(output, filesize);
+      QPixmap pixmap;
+      pixmap.loadFromData(byt);
+      QIcon ButtonIcon(pixmap);
+      button->setIcon(ButtonIcon);
+      button->setIconSize(QSize(40, 40));
+      button->setCheckable(true);
+      button->setChecked(true);
+      vbox->addWidget(button);
+    }
   }
   m_Controls.m_SegmentationMethods->setLayout(vbox);
 }

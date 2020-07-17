@@ -6,7 +6,7 @@
           name="Deep Learning Segmentation View"
           class="DeepLearningSegmentationView"
 		  category="Segmentation"
-          icon="resources/icon.xpm" />
+          icon="resources/icon.svg" />
   </extension>
 
 </plugin>
