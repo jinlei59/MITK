@@ -58,7 +58,7 @@ void DeepLearningSegmentationView::CreateQtPartControl(QWidget *parent)
   m_Controls.m_ImageSelector->SetPredicate(GetImagePredicate());
 
   m_Controls.buttonPerformImageProcessing->setEnabled(false);
-
+  //UI connects
     connect(this->m_Controls.m_ImageSelector,
           static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
           this,
@@ -66,6 +66,13 @@ void DeepLearningSegmentationView::CreateQtPartControl(QWidget *parent)
   connect(m_Controls.buttonLoadTrainedNetwork, &QPushButton::clicked, this, &DeepLearningSegmentationView::DoLoadTrainedNet);
   connect(m_Controls.buttonPerformImageProcessing, &QPushButton::clicked, this, &DeepLearningSegmentationView::DoImageProcessing);
 
+  m_SegmentationThread = new QThread;
+  m_Worker = new SegmentationWorker;
+  m_Worker->moveToThread(m_SegmentationThread);
+  //Signal/Slot connects
+  connect(this, &DeepLearningSegmentationView::Operate, m_Worker, &SegmentationWorker::DoWork);
+
+  m_ActiveService = NULL;
 }
 
 void DeepLearningSegmentationView::CreateSegmentationMethodsSelection() 
@@ -181,7 +188,16 @@ void DeepLearningSegmentationView::DoLoadTrainedNet()
 
 void DeepLearningSegmentationView::DoImageProcessing()
 {
-  m_ActiveService->DoSegmentation();
+  if (m_ActiveService)
+  {
+    MITK_INFO << "[Start] Segmentation";
+    m_SegmentationThread->start();
+    emit Operate(m_ActiveService);
+  }
+  else
+  {
+    QMessageBox::warning(nullptr, "No segmentation method selected", "Please select a segmentation method first.");
+  }
 }
 
 mitk::NodePredicateBase::Pointer DeepLearningSegmentationView::GetImagePredicate()

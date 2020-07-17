@@ -18,6 +18,7 @@ found in the LICENSE file.
 
 #include <QmitkAbstractView.h>
 #include <QToolButton>
+#include <QThread>
 
 #include "ui_DeepLearningSegmentationViewControls.h"
 
@@ -27,6 +28,8 @@ found in the LICENSE file.
 #include <mitkNodePredicateProperty.h>
 #include <mitkNodePredicateNot.h>
 #include<mitkIDeepLearningSegmentation.h>
+
+#include"SegmentationWorker.h"
 
 /**
   \brief DeepLearningSegmentationView
@@ -44,6 +47,10 @@ class DeepLearningSegmentationView : public QmitkAbstractView
 
 public:
   static const std::string VIEW_ID;
+
+  
+signals:
+  void Operate(mitk::IDeepLearningSegmentation *service);
 
 protected:
   virtual void CreateQtPartControl(QWidget *parent) override;
@@ -72,6 +79,9 @@ protected:
   std::string m_TrainedNet;
   std::map<QToolButton*, mitk::IDeepLearningSegmentation*> m_ButtonServiceMap;
   mitk::IDeepLearningSegmentation *m_ActiveService;
+
+  QThread *m_SegmentationThread;
+  SegmentationWorker *m_Worker;
 };
 
 #endif // DeepLearningSegmentationView_h
