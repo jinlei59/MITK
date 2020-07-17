@@ -17,6 +17,7 @@ found in the LICENSE file.
 #include <berryISelectionListener.h>
 
 #include <QmitkAbstractView.h>
+#include <QToolButton>
 
 #include "ui_DeepLearningSegmentationViewControls.h"
 
@@ -25,6 +26,7 @@ found in the LICENSE file.
 #include <mitkNodePredicateDataType.h>
 #include <mitkNodePredicateProperty.h>
 #include <mitkNodePredicateNot.h>
+#include<mitkIDeepLearningSegmentation.h>
 
 /**
   \brief DeepLearningSegmentationView
@@ -60,10 +62,16 @@ protected:
 
   void DoLoadTrainedNet();
 
+  void MethodSelectionChanged(QToolButton *button);
+
+  void DisableOtherButtons(QToolButton *button);
+
   Ui::DeepLearningSegmentationViewControls m_Controls;
 
   mitk::DataNode::Pointer m_selectedImageNode = nullptr;
   std::string m_TrainedNet;
+  std::map<QToolButton*, mitk::IDeepLearningSegmentation*> m_ButtonServiceMap;
+  mitk::IDeepLearningSegmentation *m_ActiveService;
 };
 
 #endif // DeepLearningSegmentationView_h

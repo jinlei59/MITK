@@ -9,8 +9,8 @@ Use of this source code is governed by a 3-clause BSD license that can be
 found in the LICENSE file.
 
 ============================================================================*/
-#ifndef mitkBoneSegmentation_h
-#define mitkBoneSegmentation_h
+#ifndef mitkDummySegmentation_h
+#define mitkDummySegmentation_h
 
 #include "mitkIDeepLearningSegmentation.h"
 #include <itkLightObject.h>
@@ -19,12 +19,12 @@ namespace mitk
 {
   ///
   /// implementation of the IDeepLearningSegmentation
-  class BoneSegmentation: public itk::LightObject, public mitk::IDeepLearningSegmentation
+  class DummySegmentation: public itk::LightObject, public mitk::IDeepLearningSegmentation
   {
   public:
-      BoneSegmentation();
+      DummySegmentation();
 
-      ~BoneSegmentation() override;
+      ~DummySegmentation() override;
 
       void DoSegmentation() override;
   protected:

@@ -73,36 +73,71 @@ void DeepLearningSegmentationView::CreateSegmentationMethodsSelection()
   auto *context = us::GetModuleContext();
   mitk::IDeepLearningSegmentation::ForceLoadModule();
   auto segmentationServiceRefs = context->GetServiceReferences<mitk::IDeepLearningSegmentation>();
-  QVBoxLayout *vbox = new QVBoxLayout;
+  QHBoxLayout *layout = new QHBoxLayout;
   for (auto ref : segmentationServiceRefs)
   {
     auto nameProperty = ref.GetProperty("Name");
-    std::string name = nameProperty.ToString();
+    QString name = QString::fromUtf8(nameProperty.ToString().c_str());
     mitk::IDeepLearningSegmentation *segmentationService = dynamic_cast<mitk::IDeepLearningSegmentation *>(
       context->GetService<mitk::IDeepLearningSegmentation>(ref));
 
     QToolButton *button = new QToolButton();
+    button->setAccessibleName(name);
+    m_ButtonServiceMap[button] = segmentationService;
+    connect(button, &QToolButton::clicked, this, [=]() { this->MethodSelectionChanged(button); });
+
+    //Set icon for button
     auto resource = ref.GetModule()->GetResource("icon.svg");
     if(resource.IsValid())
     {
+        //create bytestram from resource
       us::ModuleResourceStream rs(resource, std::ios_base::binary);
       rs.seekg(0, std::ios::end);
       int filesize = rs.tellg();
       rs.seekg(0, ios::beg);
       char *output = new char[filesize];
       rs.read(output, filesize);
+      //do Qt things
       QByteArray byt(output, filesize);
       QPixmap pixmap;
       pixmap.loadFromData(byt);
       QIcon ButtonIcon(pixmap);
       button->setIcon(ButtonIcon);
-      button->setIconSize(QSize(40, 40));
-      button->setCheckable(true);
-      button->setChecked(true);
-      vbox->addWidget(button);
+    }
+    button->setIconSize(QSize(40, 40));
+    button->setCheckable(true);
+    button->setChecked(false);
+    layout->addWidget(button);
+  }
+  m_Controls.m_SegmentationMethods->setLayout(layout);
+}
+
+void DeepLearningSegmentationView::MethodSelectionChanged(QToolButton *button) 
+{
+  DisableOtherButtons(button);
+  if (button->isChecked())
+  {
+    QString serviceNameQString = button->accessibleName();
+    std::string serviceName = serviceNameQString.toStdString();
+    MITK_INFO << "set active Service " << serviceName;
+    m_ActiveService = m_ButtonServiceMap[button];
+  }
+  else
+  {
+    MITK_INFO << "no Service active";
+    m_ActiveService = NULL;
+  }
+}
+
+void DeepLearningSegmentationView::DisableOtherButtons(QToolButton *button)
+{
+  for (auto const entry : m_ButtonServiceMap)
+  {
+    if (entry.first != button)
+    {
+      entry.first->setChecked(false);
     }
   }
-  m_Controls.m_SegmentationMethods->setLayout(vbox);
 }
 
 void DeepLearningSegmentationView::OnImageSelectorChanged()
@@ -146,7 +181,7 @@ void DeepLearningSegmentationView::DoLoadTrainedNet()
 
 void DeepLearningSegmentationView::DoImageProcessing()
 {
-
+  m_ActiveService->DoSegmentation();
 }
 
 mitk::NodePredicateBase::Pointer DeepLearningSegmentationView::GetImagePredicate()

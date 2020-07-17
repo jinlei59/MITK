@@ -21,6 +21,7 @@ namespace mitk
     class MITKDEEPLEARNINGSEGMENTATION_EXPORT IDeepLearningSegmentation
     {
 	public:
+      virtual void DoSegmentation() = 0;
       static std::string ForceLoadModule();
     protected:
 

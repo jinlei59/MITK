@@ -10,20 +10,21 @@ found in the LICENSE file.
 
 ============================================================================*/
 
-#include "mitkBoneSegmentation.h"
+#include "mitkDummySegmentation.h"
 #include <mitkIOUtil.h>
 
-mitk::BoneSegmentation::BoneSegmentation()
+
+mitk::DummySegmentation::DummySegmentation()
 {
  
 }
 
-mitk::BoneSegmentation::~BoneSegmentation()
+mitk::DummySegmentation::~DummySegmentation()
 {
 }
 
-void mitk::BoneSegmentation::DoSegmentation()
+void mitk::DummySegmentation::DoSegmentation()
 {
-  MITK_INFO << "Executing Bone Segmentation";
+  MITK_INFO << "Executing Dummy Segmentation";
 }
 
