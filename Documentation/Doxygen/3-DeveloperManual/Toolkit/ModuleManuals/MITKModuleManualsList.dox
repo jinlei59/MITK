@@ -1,11 +1,9 @@
 /**
 \page MITKModuleManualsListPage MITK Module Manuals
 
-Overview
-
 The modules are shared libraries that provide functionality that can be used by developers.
 
-\subpage MITKModuleManualsList List of Module Manuals
+\subpage MITKModuleManualsList
 
 <ul>
   <li> \ref AnnotationModulePage
@@ -22,12 +20,12 @@ The modules are shared libraries that provide functionality that can be used by 
   <li> \ref USModulePage
 </ul>
 
-\subpage MITKModuleManualsListPageAdditionalInformation Additional Information on Certain Modules
+\subpage MITKModuleManualsListPageAdditionalInformation
 <ul>
   <li> \ref PlanarPropertiesPage
 </ul>
 
-\subpage MITKMigrationGuides Migration Guides
+\subpage MITKMigrationGuides
 <ul>
   <li> \ref GeometryMigration
   <li> \ref InteractionMigration
