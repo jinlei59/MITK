@@ -13,15 +13,15 @@ what mitk::Interactor is associated with it, and a list of arbitrary properties 
 Information about the position of a data object in space/time is stored in a Geometry, which is attached to the 
 data object itself, not to the node.
 
-\subsection DataManagementPageBaseData BaseData
+<h2>BaseData<\h2>
 
 mitk::BaseData is the base class for all data objects. It itself inherits from itk::DataObject.
 
-\subsection DataManagementPageDataNode DataNode
+<h2>DataNode<\h2>
 
 This class encapsulates a BaseData object and provides uniform handling.
 
-\subsection DataManagementPageDataStorage DataStorage
+<h2>DataStorage<\h2>
 
 The MITK DataStorage manages and stores DataNodes. Besides adding and removing nodes it provides advanced
 functionality such as getting a list of all DataNodes currently in the DataStorage which match a specific

@@ -4,10 +4,7 @@
 The following items describe some issues about MITK on a more abstract level.
 
 -# \subpage CodingPage "Coding Concepts"
- -# \ref CodingPageGeneral
- -# \ref CodingPageStyle
- -# \ref CodingPageMITKMacros
- -# \subpage MicroServices_Overview
+-# \subpage MicroServices_Overview
 -# Data Concepts
  -# \subpage BasicDataTypesPage
  -# \subpage DataManagementPage

@@ -1,9 +1,7 @@
 /**
 \page PipelineingConceptPage Pipelining Concept
 
-\tableofcontents
-
-\section PipelineingConceptPage_Introduction Introduction to Pipelining
+<h1>Introduction to Pipelining</h1>
 
 Image processing in MITK draws heavily from the pipelining concept, and a clear understaning of it is crucial when developing with MITK. This document will first clarify the general idea behind pipelining and then discuss some MITK specifics that you should know about.
 
@@ -25,18 +23,15 @@ This may seem trivial, but when working with several input streams from many dif
 
 
 
+<h1>Pipelining in MITK</h1>
 
-
-
-\section PipelineingConceptPage_InMITK Pipelining in MITK
-
-\subsection PipelineingConceptPage_Update     The Update() Mechanism
+<h2>The Update() Mechanism </h2>
 
 The flow of data inside a pipeline is triggered by only one function call to the consumer, which is Update(). Each part of the pipeline then triggers the Update() method of it's antecessor. Finally, the source creates a new batch of data using it's own GenerateData() method, and notifies its successor that new data is available. The pipeline can then start to process the data until the finished data batch is available as an output of the last Filter.
 
 \imageMacro{pipelining_update.png,"",12}
 
-\subsection PipelineingConceptPage_Hierarchy     The Pipeline Hierarchy
+<h2>The Pipeline Hierarchy</h2>
 
 Tha base class for all parts of the pipeline except the consumer (which can be of any class) is mitk::Baseprocess. This class introduces the ability to process data, has an output and may have an input as well. You will however rarly work with this class directly.
 
@@ -47,10 +42,10 @@ Several source classes extend BaseProcess. Depending on the type of data they de
 The filters themselves extend one of the source classes. This may not immediately make sense, but remember that a filter basically is a source with an additional input.
 
 
+<h1>Working with Filter</h1>
 
-\section PipelineingConceptPage_WorkWith         Working with Filter
+<h2>Setting Up a Pipeline</h2>
 
-\subsection PipelineingConceptPage_Setup      Setting Up a Pipeline
 \verbatim 
     // Create Participants
     mitk::USVideoDevice::Pointer videoDevice = mitk::USVideoDevice::New("-1", "Manufacturer", "Model");
@@ -63,7 +58,8 @@ The filters themselves extend one of the source classes. This may not immediatel
     filter->Update();
 \endverbatim
 
-\subsection PipelineingConceptPage_Implement      Writing Your Own Filter
+<h2>Writing Your Own Filter</h2>
+
 When writing your first Filter, this is the recommended way to go about:
 
 - Identify which kinds of Data you require for input, and which for output
