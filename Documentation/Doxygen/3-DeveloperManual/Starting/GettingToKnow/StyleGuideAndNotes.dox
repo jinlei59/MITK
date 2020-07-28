@@ -1,12 +1,11 @@
 /**
 \page StyleGuideAndNotesPage The MITK Style Guide and Technical Notes
 
-\tableofcontents
 
 The following document is a description of the accepted coding style for the Medical Imaging Interaction Toolkit (MITK). Developers who wish to contribute code to MITK should read and adhere to the standards described here.
 
 
-\section StyleGuideAndNotesPage_NameConventions Naming Conventions
+<h1>Naming Conventions </h1>
 
 \li Using case change to indicate separate words
 @code
@@ -32,7 +31,8 @@ mitk::DataNode* node;
 Interest
 
 
-\subsection StyleGuideAndNotesPage_NamingClasses Naming Classes
+<h2>Naming Classes </h2>
+
 
 \li Classes are named beginning with a capital letter
 
@@ -49,7 +49,8 @@ class name = <algorithm><input><concept>
 <b>Reader/Writer</b>: A class that reads/writes a single data object e.g. VtkSurfaceReader \n
 
 
-\subsection StyleGuideAndNotesPage_NamingFiles Naming Files
+<h2>Naming Files </h2>
+
 
 \li MITK classes like @a ExampleClass should be in namespace @a mitk and their corresponding files should be named @a mitkExampleClass.h/.cpp.
 @code
@@ -66,7 +67,8 @@ QmitkDataStorageComboBox
 \li Implementation Files with an .cpp or .txx for a template class
 
 
-\subsection StyleGuideAndNotesPage_NamingMethodsandFunctions Naming Methods and Functions
+<h2>Naming Methods and Functions </h2>
+
 
 \li Functions and methods are named beginning with a capital letter
 
@@ -77,7 +79,8 @@ mitk::DataStorage::SetOfObjects::ConstPointer all = this->GetAll();
 @endcode
 
 
-\subsection StyleGuideAndNotesPage_NamingSignalSlots Naming Signal/Slots Methods and Functions
+<h2>Naming Signal/Slots Methods and Functions </h2>
+
 
 \li Slots are named according to the following general rule
 @code
@@ -105,8 +108,7 @@ Signal[MethodName]();
 emit SignalFinishedSegmentation();
 @endcode
 
-
-\subsection StyleGuideAndNotesPage_NamingClassDataMembers Naming Class Data Members
+<h2>Naming Class Data Members </h2>
 
 \li Class data members are prefixed with m_
 @code
@@ -121,7 +123,8 @@ loadImageButton
 closeImageAction
 @endcode
 
-\subsection StyleGuideAndNotesPage_NamingLocalVariables Naming Local Variables
+<h2>Naming Local Variables </h2>
+
 
 \li Local variables first letter is lower-case
 @code
@@ -131,7 +134,8 @@ slicesIt
 @endcode
 
 
-\subsection StyleGuideAndNotesPage_NamingQtVariables Naming Qt Variables
+<h2>Naming Qt Variables </h2>
+
 
 \li GUI variables ends with name of used QT tool.
 @code
@@ -142,7 +146,8 @@ QRadioButton* binaryImageRadioButton;
 @endcode
 
 
-\subsection StyleGuideAndNotesPage_NamingTypedefs Naming Typedefs
+<h2>Naming Typedefs </h2>
+
 
 \li Typedefs must end in the word Type
 @code
@@ -152,9 +157,11 @@ typedef std::list<mitk::Image::Pointer> ImageListType;
 @endcode
 
 
-\section StyleGuideAndNotesPage_Pointer Pointer
+<h1>Naming Pointer </h1>
 
-\subsection StyleGuideAndNotesPage_DeclarationofPointers Declaration of Pointers
+
+<h2>Declaration of Pointers </h2>
+
 
 \li Position of * pointers are connected with the variable
 @code
@@ -167,7 +174,8 @@ int &counter;
 @endcode
 
 
-\subsection StyleGuideAndNotesPage_SmartPointer SmartPointer
+<h2>SmartPointer </h2>
+
 
 \li SmartPointers must be used for classes that have itk::Object as a base
 class.
@@ -194,7 +202,8 @@ is sufficient.
 NotNull() methods. A simple ==NULL issues a warning.
 
 
-\section StyleGuideAndNotesPage_Namespace Namespace
+<h1>Namespace </h1>
+
 
 \li MITK classes should be in namespace @a mitk
 @code
@@ -223,9 +232,11 @@ switch (actionId)
 @endcode
 
 
-\section StyleGuideAndNotesPage_CodeLayoutandIndentation Code Layout and Indentation
+<h1>Code Layout and Indentation </h1>
 
-\subsection StyleGuideAndNotesPage_GeneralLayout General Layout
+
+<h2>General Layout </h2>
+
 
 \li Each line of code should take no more than 120 characters.
 
@@ -245,7 +256,8 @@ ImageType::Pointer 	image;
 @endcode
 
 
-\subsection StyleGuideAndNotesPage_ClassLayout Class Layout
+<h2>Class Layout </h2>
+
 
 \li Copyright
 @code
@@ -321,7 +333,8 @@ private/protected:
 #endif
 @endcode
 
-\section StyleGuideAndNotesPage_UseofBraces Use of Braces
+<h1>Use of Braces </h1>
+
 
 \li Used to delimit the scope of an if, for, while, switch.
 
@@ -361,7 +374,8 @@ for ( unsigned int i = 0; i < 3; ++i) { x[i] = 0.0; }
 @endcode
 
 
-\section StyleGuideAndNotesPage_IncludeGuards Include Guards
+<h1>Include Guards </h1>
+
 
 \li #inlcude guard is a particular construct used to avoid the problem of
 double inclusion when dealing with the #include directive.
@@ -385,7 +399,9 @@ child.h        #include "grandfather.h"
 @endcode
 
 
-\subsection StyleGuideAndNotesPage_Useofincludeguards Use of #include guards
+<h2>Use of #include guards </h2>
+
+
 \li Here, the first inclusion of grandfather.h causes the macro grandfather h to
 be defined. Then, when child.cpp includes grandfather.h the second time,
 the #ifndef test fails, and the preprocessor skips down to the #endif, thus
@@ -405,7 +421,8 @@ child.h        #include "grandfather.h"
 @endcode
 
 
-\section StyleGuideAndNotesPage_TechnicalNotes Some Technical Notes
+<h1>Some Technical Notes </h1>
+
 
 \li Use forward declarations in header files wherever possible. Only include those header files in a header file
 that are really necessary. Include the rest in the implementation file.
@@ -458,7 +475,8 @@ switch (actionId)
 @endcode
 Prefixes for the constants are to be used like corresponding others. See file @a Interactions\\mitkBaseInteraction\\mitkInteractionConst.h for further details.
 
-\section StyleGuideAndNotesPage_AutomaticCodeFormatting Automatic Code Formatting
+<h1>Automatic Code Formatting </h1>
+
 
 We offer a .clang-format file, which can be used to automatically format code acceptably.
 

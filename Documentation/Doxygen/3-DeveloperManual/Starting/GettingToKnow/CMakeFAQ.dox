@@ -1,7 +1,7 @@
 /**
 \page CMAKE_FAQ CMake FAQ
 
-\section CMAKE_FAQ_General A general comment
+<h1>A general comment </h1>
 
 MITK uses %CMake for configuration. If you want to develop either using MITK as a toolkit or by extending the capabilities of the applications provided by us, we recommend using %CMake for your own project too.
 While it might be possible to use MITK in conjunction with other options, such as QMake or setting up your own project manually it will invariably involve a lot of work and probably hacks as well.
@@ -12,15 +12,19 @@ This guide does not try to give a general introduction to CMake, instead it trie
 
 We will assume in this guide, that the path to your source is /MITK/.
 
-\section CMAKE_FAQ_Question Basic Questions
+<h1>Basic Questions </h1>
 
-\subsection CMAKE_FAQ_Question_WhereGetIt Where do I get CMake and what version do I need?
+
+<h2>Where do I get CMake and what version do I need? </h2>
 See \ref BuildInstructions_Prerequisites.
 
-\subsection CMAKE_FAQ_Question_NewPluginNothing I coded a new plugin for the Workbench and nothing happened. Why?
+
+<h2>I coded a new plugin for the Workbench and nothing happened. Why? </h2>
+
 The correct way to create a new plugin is described in \ref NewPluginOnly. Do note that you need to move the source to the MITK/Plugins directory and you will have to add the plugin to the config file (most likely MITK/Plugins/Plugins.cmake</tt>). After that see \ref CMAKE_FAQ_Question_HowDoIActivatePlugin.
 
-\subsection CMAKE_FAQ_Question_HowDoIActivatePlugin I want to use a plugin, how do I activate it?
+<h2>I want to use a plugin, how do I activate it? </h2>
+
 <ol>
  <li> Start %CMake
  <li> Configure
@@ -30,12 +34,14 @@ The correct way to create a new plugin is described in \ref NewPluginOnly. Do no
  <li> Start a build using your development environment
 </ol>
 
-\subsection CMAKE_FAQ_Question_HowDoIActivateModule I want to use a module, how do I activate it?
+<h2>I want to use a module, how do I activate it? </h2>
+
 Modules are build automatically if a plugin that requires them is activated. See \ref CMAKE_FAQ_Question_HowDoIActivatePlugin.
 
-\subsection CMAKE_FAQ_Question_HowOwnToolkits MITK always downloads the toolkits, but I want to use my own.
+<h2>MITK always downloads the toolkits, but I want to use my own. </h2>
+
 This is covered in \ref HowToNewProjectCustomizingMITKConfigure.
 
-\subsection CMAKE_FAQ_Question_HowOwnProjectMITK I want to use an MITK plugin in my own project but I can not find it.
+<h2>I want to use an MITK plugin in my own project but I can not find it. </h2>
 See \ref HowToNewProjectAddingMITKFunctionality.
 */

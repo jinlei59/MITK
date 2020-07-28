@@ -42,7 +42,8 @@ This creates a button to start the segmentation and its clicked() signal is conn
 \skipline QPushButton *startButton
 \skipline connect(startButton
 
-\section AccessMTIKImagesAsITKImagesSection Access MITK images as ITK images
+<h1>Access MITK images as ITK images </h1>
+
 
 ITK images are templated whereas mitk::Images are not. To use ITK filters with MITK images, we have to convert from MITK to ITK. To do so, first
 define an access method, which is templated as an ITK image is:
@@ -89,7 +90,8 @@ The method StartRegionGrowing() finally calls our access method RegionGrowing():
 \skipline Step6::StartRegionGrowing
 \until }
 
-\section ConvertingITKMITKSection Converting ITK images to MITK images and vice versa
+<h1>Converting ITK images to MITK images and vice versa </h1>
+
 
 In some cases it is useful to simply convert between ITK and MITK images. The direction ITK to MITK is easy, since mitk::Image can handle most data types. The direction MITK to ITK is more critical, since ITK images have to be instantiated with a fixed pixel type and fixed dimension at compile time.
 
@@ -97,13 +99,15 @@ In some cases it is useful to simply convert between ITK and MITK images. The di
 \li \code mitk::CastToItkImage(mitkImage, itk::Image<...>) \endcode
 
 
-\section ConnectingMITKToVTKSection Connecting MITK images to VTK
+<h1>Connecting MITK images to VTK </h1>
+
 
 Images are not converted or copied: The data array is just accessed via an encapsulating VTK object.
 
 \li \code vtkImageData* mitk::Image::GetVtkImageData(int time = 0) \endcode
 
-\section SurfacesMITKToVTKSection MITK Surfaces to VTK and vice versa
+<h1>MITK Surfaces to VTK and vice versa </h1>
+
 
 Again: not a conversion, just accessing.
 

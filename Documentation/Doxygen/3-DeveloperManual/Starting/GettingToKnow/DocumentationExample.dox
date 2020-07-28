@@ -6,7 +6,7 @@ your code using doxygen. The corresponding source file can be found \ref Documen
 
 For the generated documentation page see DocumentationExample .
 
-\section DocumentationExampleAdvanced Advanced Doxygen Usage
+<h1>Advanced Doxygen Usage </h1>
 
 For more information on doxygen and its use you can take a look at one of the following resources.
 
@@ -16,7 +16,8 @@ For more information on doxygen and its use you can take a look at one of the fo
   <li> The doxygen <a href="http://www.stack.nl/~dimitri/doxygen/faq.html">FAQ</a>
 </ul>
 
-\section DocumentationExampleTheSourceFile The Source File
+<h1>The Source File </h1>
+
 
 \verbinclude DocumentationExample.h
 */

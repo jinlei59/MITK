@@ -9,7 +9,6 @@ This section will show you around MITK and acquaint you with the basic concepts.
   <li> \subpage CMAKE_FAQ </li>
   <li> \subpage StyleGuideAndNotesPage </li>
   <li> \subpage DocumentationGuide </li>
-  <li> \subpage CodingPage </li>
   <li> \subpage KnownProblemsPage </li>
   <li> \subpage TroubleshootingPage </li>
 </ul>
