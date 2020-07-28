@@ -16,7 +16,7 @@ Since volume-rendering is a (rather) slow procedure, the default is that images 
 \li Step 3a works for default condition for surface mesh. To run this tutorial with Step 3a, pass the argument as "lungs.vtk" (without quotes).
 \li Step 3b works for surface mesh with volume rendering. To run this tutorial with Step 3b, pass the arguments as "Pic3D.nrrd lungs.vtk" (without quotes).
 
-\section Step3aSection Step 3a - Volume rendering turned off
+<h1>Step 3a - Volume rendering turned off </h1>
 
 \imageMacro{step3a_result.png,"",6.22}
 
@@ -32,7 +32,7 @@ The rest of the code remains unchanged.
 The picture above shows the result of the program when reading both the image and the surface file.
 As volume rendering is off the image is not visible.
 
-\section Step3bSection Step 3b - Volume rendering turned on
+<h1>Step 3b - Volume rendering turned on </h1>
 
 \imageMacro{step3b_result.png,"",6.22}
 

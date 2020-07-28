@@ -1,7 +1,7 @@
 /**
 \page DocumentationGuide Writing Documentation
 
-\section DocumentationGuideCodeGeneral General remarks
+<h1>General remarks </h1>
 
 MITK uses <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> for the generation of our user manual pages as well as for the generation of the on- and offline reference manuals. So on the technical side many questions can be answered by the <a href="http://www.stack.nl/~dimitri/doxygen/manual.html">doxygen documentation</a>, such as the list of commands or a few basic doxygen tutorials.
 
@@ -9,7 +9,7 @@ Therefore this document is not primarily intended as a guide to using doxygen, t
 
 Also, of course you need to have doxygen installed to generate documentation.
 
-\section DocumentationGuideCode Documenting the source code
+<h1>Documenting the source code </h1>
 
 MITK is a substantial project and encompasses many different source files by many different developers over quite a considerable timeframe. Many of them have written excellent code which can do a lot of things and is very helpful to people who might apply it in wholly unlooked for ways to completely different problems. To facilitate this sharing and reusing of ressources one first and foremost has to know what kind of ressources are already available.
 
@@ -35,12 +35,14 @@ An example:
 
 See \subpage DocumentationExample for an exemplary documentation of a class.
 
-\subsection DocumentationGuideCodeHints Helpful hints:
+<h2>Helpful hints </h2>
+
 <ul>
  <li> Always put comments intended for doxygen in the header files.
 </ul>
 
-\section DocumentationGuideManual Writing user manuals
+<h1>Writing user manuals </h1>
+
 
 While the usage of your view/perspective/application might seem obvious and accessible to you, to most people it is not. Writing a good manual is key for this. It is very difficult to write a manual which is too comprehensive, most often if something can be done in a wrong way, somebody will see this as the only one.
 
@@ -68,7 +70,8 @@ Image size is only used for the pdf export, but images won't be displayed at all
 
 The nightly generated HTML documentation and the Qt Help System documentation can contain different content using the isHTML command.
 
-\subsection DocumentationGuideManualHints Helpful hints:
+<h2>Helpful hints </h2>
+
 <ul>
  <li> Do not use fullstops (".") in identifiers, it throws doxygen off
  <li> Think were your page should go in the MITK help page structure and declare it as a subpage accordingly

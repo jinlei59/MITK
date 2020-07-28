@@ -2,10 +2,9 @@
 
 \page Step10Page MITK Tutorial - Step 10: Adding new Interaction
 
-\tableofcontents
 
+<h1>Step 01 - How to use an existing DataInteractor in your Module/Plugin/... </h1>
 
-\section HowToUseDataInteractor Step 01 - How to use an existing DataInteractor in your Module/Plugin/...
 
 MITK provides finished DataInteractors for a variety of tasks, they can be found in Core/Code/Interactions. They can be used with
 state machine patterns and config files located under Core/Code/Resources/Interactions.
@@ -43,13 +42,15 @@ Lastly the mitk::DataNode is added to the mitk::DataInteractor
 
 now the mitk::DataInteractor is ready for usage.
 
-\section HowToModifyInteraction Step 02 - How to modify the behaviour of a DataInteractor
+<h1>Step 02 - How to modify the behaviour of a DataInteractor </h1>
+
 
 The behavior of a mitk::DataInteractor is determined by two aspects. One, the state machine pattern which describes the flow/order of actions
 that are performed. Secondly the configuration which determines which user interaction triggers the actions.
 
 
-\subsection ModifyDisplayInteractorBehavior How to modify the display interactor behavior
+<h2>How to modify the display interactor behavior </h2>
+
 
 Sometimes it may be desirable to change the behaviour of the mitk::DisplayInteractor which controls zooming, panning and scrolling, e.g. when a
 Tool is activated that reacts to the same events. Changing the behavior of the DisplayInteractor (or possibly any other EventHandler) can be achieved from anywhere
@@ -77,7 +78,8 @@ for (std::list<mitk::ServiceReference>::iterator it = listEventObserver.begin();
 
 
 
-\section SectionImplementationDataInteractor How to implement a new DataInteractor
+<h1>How to implement a new DataInteractor </h1>
+
 
 This second part of the tutorial step goes beyond the activation of an interactor, that modifies data by user interaction) as shown above. It shows what needs to be implemented to add a new way of interaction within your MITK application.
 Please see \ref DataInteractionPage as an introduction to the MITK interaction mechanism, you may also want to read \ref DataInteractionTechnicalPage.
@@ -86,16 +88,17 @@ This tutorial is structured as follows: The first section deals with config file
 in a configuration file. In the second section the basics are described that are needed to write a state machine pattern. The last section
 deals with brining configuration, state machine pattern and code together and gives an exemplary implementation of a mitk::DataInteractor.
 
-\section ConfigFileDescriptionSection How to create a Config-File
+<h1>How to create a Config-File </h1>
 
-\subsection EventDescriptionSection Event Description
+
+<h2>Event Description </h2>
+
 
 Events are described by their parameters. Each event type has its own set of parameters that can be set in the configuration file.
 If a parameter is omitted it is set to its default value. All possible parameters are listed and described below. Event parameters
 are also described in the documentation of the event class itself.
 
 Mandatory for each event description is the event class and the event variant. The parameters of an event are set by attribute tags.
-\note Refer to \ref EventClassSection for the meaning of event class.
 
 \b Mouse \b Buttons \n
 
@@ -159,7 +162,8 @@ but the event is generated with the actual value, and this value can be retrieve
 \endcode
 
 
-\subsection ExamplesSection Examples
+<h2>Examples </h2>
+
 
 
 Examples for key events:
@@ -196,7 +200,7 @@ Examples for MousePress events:
 There exists a standard configuration file for the most common events called GlobalConfig.xml that can be used to as a default and can be extended
 by a specific definition.
 
-\subsection ParameterDescriptionSection Parameter Description
+<h2>Parameter Description </h2>
 
 It is also possible to store parameters in the config file. Those are stored using the param-tag, like this:
 
@@ -218,11 +222,13 @@ Within the application these properties can then be access via a mitk::PropertyL
 \endcode
 
 
-\section HowToStateMachine HowTo Write a State Machine
+<h1>Write a State Machine </h1>
+
 
 A state machine pattern is described in a XML file.
 
-\subsection StateSection States
+<h2>States </h2>
+
 
 States are described using the state-tag. Each state has to have a name. Exactly one state has to be a start state in
 each state machine to indicate the state in which the state machine is set when it is constructed.
@@ -244,7 +250,9 @@ receive events.
 <state name="someState" startstate="true" state_mode="GRAB_INPUT"/>
 \endcode
 
-\subsection TransitionSection Transitions
+<h2>Transitions </h2>
+
+
 Transitions are part of a state and describe all possible state switches, and are therefore important for modeling an interaction scheme.
 Transitions consist a part that describes the event which triggers the transition (event class and event variant) and a target which is state
 to which the state machine switches after executing a transition.
@@ -252,7 +260,9 @@ An event class describes the event type (see mitk::InteractionEvent for the diff
 and the exact description is taken from  a config file. Together they determine which event can trigger this transition.
 For example this state machine will switch from state A to state B when the StdMousePressPrimaryButton event (left mouse button is pressed) occurs.
 
-\subsubsection EventClassSection Event Class
+<h2>Event Class </h2>
+
+
 The event class description supports the polymorphism of the event classes. Therefore state machine patters should be written in the most
 general ways possible.
 So for a given class hierarchy like this:
@@ -284,7 +294,8 @@ for newly added event classes as long as they match the class hierarchy (this en
 </statemachine>
 \endcode
 
-\subsection ActionSection Actions
+<h2>Actions </h2>
+
 Actions can be added to transitions and represent functions in the mitk::DataInteractor that are executed on taking a transition.
 The following simple state machine will listen for left mouse clicks and execute two actions (and actually never stop).
 \code
@@ -311,7 +322,8 @@ void mitk::ExampleInteractor::ConnectActionsAndFunctions()
 }
 \endcode
 
-\subsection ConditionSection Conditions
+<h2>Conditions </h2>
+
 Conditions can be added to transitions and represent functions in the mitk::DataInteractor that are executed on taking a transition.
 A condition is used to determine if a following action should be executed or not.
 \code
@@ -338,7 +350,8 @@ void mitk::ExampleInteractor::ConnectActionsAndFunctions()
 }
 \endcode
 
-\section ReferenceToIncludeFiles Integration of the pattern and configuration files
+<h1>Integration of the pattern and configuration files </h1>
+
 
 The usage of custom files slightly differs from the existing ones.
 Custom pattern and config files have to be stored in the /Resources/Interactions directory of the Module that they were designed for.
@@ -353,7 +366,8 @@ When loading files from a module location into an interactor, the module has to 
 See \ref IncludeFiles for a description.
 
 
-\section HowToDataInteractor Implementation of a new mitk::DataInteractor
+<h1>Implementation of a new mitk::DataInteractor </h1>
+
 
 DataInteractors are to inherit from mitk::DataInteractor. Their functionality is implemented in functions that follow this interface:
 For Actions:
@@ -387,7 +401,8 @@ This step assumes knowledge of the Interaction concept described in \ref DataInt
 
 Now all that is left it to write a state machine pattern and a config file as is described in the tutorials.
 
-\subsection ExampleInternalEvent Example Interactor using InternalEvent
+<h2>Example Interactor using InternalEvent </h2>
+
 
 A useful tool in creating DataInteractors is mitk::InternalEvent which allows the mitk::DataInteractor to send signals on its own.
 The following will describe how to build a mitk::DataInteractor that allows to add points until a certain number of points is reached.

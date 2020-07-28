@@ -3,7 +3,7 @@
 
 \tableofcontents
 
-\section BuildInstructions_Introduction Introduction
+<div align="center"><h1>Introduction </h1></div>
 
 The CMake-based build system of MITK supports a "superbuild" process,
 meaning that it will download, configure, and build all required third-party
@@ -17,7 +17,7 @@ automated. Please see \ref HowToNewProject.
 For more advanced users, the last sections explains how to inject custom build
 libraries into the superbuild process.
 
-\section BuildInstructions_Prerequisites Prerequisites
+<div align="center"><h1>Prerequisites </h1></div>
 
 You need:
   -# Git from http://git-scm.com (there are also numerous third-party graphical
@@ -29,13 +29,13 @@ You need:
   -# If you are using <b>macOS</b> you need an XCode installation and the
      Command Line Tools as it provides the neccessary compilers and SDKs
 
-\section BuildInstructions_Qt A note about Qt
+<div align="center"><h1>A note about Qt </h1></div>
 
 As we do not provide Qt in the MITK superbuild you need to install Qt manually.
 The Qt Company provides <a href="http://www.qt.io/download/">online installers
 for all supported platforms</a>.
 
-\section BuildInstructions_Get_Source Get a source tree
+<div align="center"><h1>Get a source tree </h1></div>
 
 Since MITK is under active development we recommend to use Git to check out
 the latest stable release from the homepage. If you decide to use the most
@@ -51,7 +51,7 @@ To clone MITK's current Git repository do:
 git clone https://phabricator.mitk.org/source/mitk.git MITK
 \endcode
 
-\section BuildInstructions_Build_With_CMake Build MITK with CMake
+<div align="center"><h1>Build MITK with CMake </h1></div>
 
 Create a new directory for the superbuild binary tree, change to it and call CMake:
 
@@ -94,7 +94,7 @@ make -j6
 <tt>MITK-superbuild.sln</tt> solution file in the <tt>MITK-superbuild</tt>
 directory and start the build by building the <tt>BUILD_ALL</tt> project.
 
-\section BuildInstructions_Customize Customize your MITK superbuild
+<div align="center"><h1>Customize your MITK superbuild </h1></div>
 
 The MITK superbuild configures MITK as well as all external libraries. The
 build directories of these libraries, and of MITK itself are located inside
@@ -120,7 +120,7 @@ You may also change the configuration of any project configured via the
 superbuild process. Make sure to also build the changed project and also the
 projects which depend on it.
 
-\section BuildInstructions_Running Running Applications
+<div align="center"><h1>Running Applications </h1></div>
 
 On Linux, just execute the application you want to run. MITK executables are
 located in <tt>MITK-superbuild/MITK-build/bin</tt>
@@ -130,7 +130,8 @@ containing the third-party libraries. This is automatically done from Visual Stu
 For running the applications directly use the generated batch files in the
 <tt>MITK-superbuild/MITK-build/bin</tt>.
 
-\section BuildInstructions_Documentation Documentation
+<div align="center"><h1>Documentation </h1></div>
+
 
 If you have the <a href="http://www.doxygen.org">Doxygen</a> documentation tool
 installed, you get a new project (Visual Studio) or "make" target named "doc".
@@ -138,11 +139,13 @@ You can build this to generate the HTML documentation of MITK in the
 Documentation/Doxygen directory of your MITK-build binary tree or in the
 <tt>MITK_DOXYGEN_OUTPUT_DIR</tt> CMake variable (if specified).
 
-\section BuildInstructions_Extending Extend MITK on your own (using the application framework BlueBerry)
+<div align="center"><h1>Extend MITK on your own (using the application framework BlueBerry) </h1></div>
+
 
 Please see \ref NewPluginPage
 
-\section BuildInstructions_As_Toolkit Use MITK in your own project (as a toolkit)
+<div align="center"><h1>Use MITK in your own project (as a toolkit) </h1></div>
+
 
 To use MITK in your external project, add the CMake command
 <code>find_package(MITK REQUIRED)</code> to your CMakeLists.txt and make use of
@@ -174,7 +177,8 @@ int main()
 }
 \endcode
 
-\section BuildInstructions_Advanced_Customization Superbuild customization
+<div align="center"><h1>Superbuild customization </h1></div>
+
 
 You can inject pre-build third-party libraries into the MITK superbuild by
 setting certain CMake variables before the first configure step. MITK will
