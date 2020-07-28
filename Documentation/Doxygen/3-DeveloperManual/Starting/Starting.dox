@@ -32,7 +32,6 @@ The \ref FirstSteps section will then show you how to extend MITK for your own p
     <li> \ref NewViewPage </li>
     <li> \ref NewModulePage</li>
   <li> \ref CMAKE_FAQ </li>
-    <li> \ref StatemachineEditor </li>
   </ul>
   <li> \subpage AboutTestingPage </li>
 </ul>
