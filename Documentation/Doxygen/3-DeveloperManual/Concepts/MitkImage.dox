@@ -25,12 +25,12 @@ For the sake of this introduction, we will have a look at three different aspect
 2. ImageData
 3. Image Properties
 
-\subsection MitkImagePage_SlicedData SlicedData and Geometry
+<h2>SlicedData and Geometry</h2>
 The mother class of Image introduces a fundamental aspect: Image geometry. It defines the
 image's spatial context: Dimension and orientation. A more in depth introduction is given
 here: \ref GeometryOverviewPage
 
-\subsection MitkImagePage_ImageData ImageData
+<h2>ImageData</h2>
 
 Objects of the class Image store the actual image data. It is important to discern four
 different concepts:
@@ -48,7 +48,7 @@ from one image to another.
 
 \imageMacro{mitkimagememory.png,"",16}
 
-\subsection MitkImagePage_Properties Image Properties
+<h2>Image Properties</h2>
 
 Lastly, we'll talk about properties. Properties are a set of additional information mainly
 used to save DICOM information. The functionality is introduced very early in the image's
@@ -66,7 +66,7 @@ keeping data consistent. Every Image manages its image accessors and thus is res
 for them. In the following subsections, image accessors are explained and their use is
 depicted. Code examples are added to make understanding easier.
 
-\subsection MitkImagePage_ImageAccessors Image accessors
+<h2>Image accessors</h2>
 
 Image accessors provide an image access, which is
  -# <b>controlled and surveilled:</b> at all time it is known how many instances have
@@ -88,7 +88,7 @@ a legacy mode (you should not instantiate it).
 
 \imageMacro{mitkimageaccessorhierarchy.png,"",16}
 
-\subsection MitkImagePage_HowToGetAccess How to get access
+<h2>How to get access</h2>
 Although the concept of image accessors is extensive, the use of image accessors is
 simple. Requesting an image access consists only of creating an instance of an image
 accessor. The constructor of an image accessor requires a pointer to the mitk::Image class
@@ -146,7 +146,7 @@ catch(mitk::Exception& e)
 }
 \endverbatim
 
-\subsection MitkImagePage_AdditionalProperties Additional properties
+<h2>Additional properties</h2>
 
 It is possible to commit options to the constructor affecting the behavior of an image
 accessor. Properties have to be specified using enum flags (e.g.
@@ -171,7 +171,7 @@ catch(mitk::Exception& e) {
 
 \section MitkImagePage_WorkingWith Working with MITK Image
 
-\subsection MitkImagePage_Cloning     Cloning a MITK Image
+<h2>Cloning a MITK Image</h2>
 In order to clone an image, you can simply call the inherited method Clone(). It returns
 an itk::SmartPointer and works also with const image pointers.
 
@@ -189,7 +189,7 @@ Image::Initialize(const Image * image). This will copy the geometry information,
 the data or the properties. Afterwards, copy the image's data (e.g. with SetVolume) and,
 if necessary, it's properties with SetPropertyList(image->GetPropertyList()).
 
-\subsection MitkImagePage_Inheriting Inheriting from MITK Image
+<h2>Inheriting from MITK Image</h2>
 In general, one should try to avoid inheriting from mitk Image. The simple reason for this
 is that your derived class will not cleanly work together with the Filters already
 implemented (See the chapter on Pipelining for Details). If however, mitk Image does not
