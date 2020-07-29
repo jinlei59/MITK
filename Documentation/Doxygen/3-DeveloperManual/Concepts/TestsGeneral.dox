@@ -1,9 +1,9 @@
 /**
 \page GeneralTests General: Tests in MITK
 
-\tableofcontents
 
-\section GeneralTestsIntroduction Testing in MITK
+<h1>Testing in MITK </h1>
+
 
 The basic idea about unit testing is to write a test for every unit (e.g. function) of your software, which automatically checks if the code still returns the expected result for a defined input. The goal is to isolate units as much as possible, in order to be efficient with fixing errors.
 
@@ -15,11 +15,13 @@ MITK uses CppUnit, which is a framework for efficient and fast test writing, to 
 
 This pages gives a general introduction to our test framework. Rendering tests are explained in more detail in the section \ref RenderingTests and interaction tests the section \ref InteractionTestingHowTo. The following sections will explain how to write your own tests with MITK and how to run them.
 
-\section GeneralTestsAdding Adding a test to your module
+<h1>Adding a test to your module</h1>
+
 
 Generally, functional code you want to test using unit tests will be located in a module. For an overview of the directory structure see \ref NewModulePageCreateFolder and how to add the files comprising your test compare \ref NewModulePageCreateTestingEnvironment
 
-\subsection GeneralTestsAddingFramework Test and test class/suite
+<h2>Test and test class/suite</h2>
+
 
 CppUnit and MITK distinguish between the term test class and test, which is important to understand. A test is simply a call of a single function and a comparison against a reference.
 
@@ -46,7 +48,8 @@ In order to use CppUnit via MITK you will need to include the corresponding file
   MITK_TEST_SUITE_REGISTRATION(mitkImageEqual)
 \endcode
 
-\subsection GeneralTestsAddingHow How to structure your test
+<h2>How to structure your test</h2>
+
 
 As mentioned before, all test suites derive from mitk::TestFixture. A suggested name for your test suite would be <FUNCTIONALITY_TO_BE_TESTED>TestSuite.
 
@@ -69,17 +72,20 @@ An example:
 
 You also may provide a setUp() and a tearDown() function. These will be called before/after each test and should be used to make sure that each test works independently and on freshly initialized members and memory to maximize isolation. That way you avoid only testing whether a function works after another function has already been called. See <a href="http://cppunit.sourceforge.net/doc/cvs/class_test_fixture.html">CppUnit documentation</a> for more information. For an example test suite including tests see \ref GeneralTestsExample
 
-\section GeneralTestsRunning Running your test suite
+<h1>Running your test suite</h1>
+
 
 The build system of MITK generates a test driver which includes all test suites that have been added to the project. Alternatively you can run MITK test suites by using the program ctest. This is the way all MITK tests run on the continuous dart clients of MITK. The results of these runs can be found at http://cdash.mitk.org.
 
 If you use the test driver, you only need to start the executable. If you start it without parameters, it will then give you an overview of all tests which are included in this test driver and you can choose one by typing a number. Alternatively, you can give your test driver the name of your test suite as parameter. If you want to use ctest instead of the test driver you need to start a command line, go to the binary directory of MITK and call ctest. To avoid errors, check if your path variable contains all relevant paths to start MITK.
 
-\section GeneralTestsParameterInput Adding parameters to your test
+<h1>Adding parameters to your test</h1>
+
 
 If possible, the setUp() method of the test suite should provide all necessary inputs for the respective tests. MITK provides several helper classes to generate synthetic test data, such as the mitk::ImageGenerator. If you have to load data from the hard disc for your test, you can use the method GetTestDataFilePath(string fileName). For an example of loading data from the MITK_DATA_DIR check the mitkIOUtilTestSuite.
 
-\section GeneralTestsPredefinedAssertions Predefined assertions
+<h1>Predefined assertions</h1>
+
 
 MITK and CppUnit offer predefined assertions, i.e. helper methods which will help to compare your data against a certain reference. All basic types are covered by CppUnit assertions, such as CPPUNIT_ASSERT. For examples, please check the <a href="http://cppunit.sourceforge.net/doc/cvs/group___assertions.htmll">CppUnit documentation</a>. MITK further offers comparison tools for floating point numbers, vectors, images, surfaces and point sets. A complete list of assertion macros is given in \ref MITKTestingAPI.
 
@@ -90,15 +96,18 @@ An example to compare images:
 
 By default, the method uses an mitk::eps for floating point comparison, but this can be adapted. It can be necessary to write your own assertion for your own data meeting your special requirements. Recommended examples are all equal test suites for basic data types (mitkImageEqualTest, mitkSurfaceEqualTest and mitkPointSetEqualTest).
 
-\section GeneralTestsExample An example
+<h1>An example</h1>
+
 
 \include Examples/FirstSteps/NewModule/test/mitkExampleDataStructureTest.cpp
 
-\section GeneralTestsFurtherInfo Further information
+<h1>Further information</h1>
+
 
 More examples can be found in the corresponding <a href="http://www.mitk.org/images/5/5d/BugSquashingSeminars%24CppUnitFrameworkSeminar.pdf"> bugsquashing presentation</a>.
 */
 
-\section GeneralTestsDeprecatedOldTestingStyle Deprecated macros
+<h1>Deprecated macros</h1>
+
 
 All tests with MITK_TEST_BEGIN(); and MITK_TEST_END(); use the deprecated old MITK testing style. If possible, they should be replaced with the new CppUnit style as explained before. Most of these test classes contain very unfortunate examples and should not be regarded as reference.

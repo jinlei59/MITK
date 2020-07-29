@@ -39,7 +39,8 @@ Project options
 If a project name is provided via the <tt>--project-name</tt> argument, the new plugin will be generated
 as part of a new project.
 
-\section NewPluginOnly Creating a new MITK plugin
+<h1>Creating a new MITK plugin </h1>
+
 
 Here is an example call to the Plugin Generator, creating one plugin with the symbolic name
 <tt>com.mycompany.myplugin</tt> and a View named <tt>My View</tt>:
@@ -52,9 +53,10 @@ If you did not already specify the final location of the plugin via the <tt>--ou
 directory (in our example <tt>/tmp/org.mycompany.myplugin</tt>) to your existing project. Do not forget to add the
 plugin in your project's build system (usually in the file <tt>&lt;your-project&gt;/Plugins/Plugins.cmake</tt>).
 
-\section NewPluginWithProject Creating a new MITK project
+<h1>Creating a new MITK project </h1>
 
-\subsection NewPluginProjectPrerequisites Prerequisites
+
+<h2>Prerequisites </h2>
 
 MITK-based projects created with the Plugin Generator need the same prerequisites as MITK itself. See the
 \ref BuildInstructionsPage for MITK for details.
@@ -71,7 +73,8 @@ project's build directory layout and how to configure MITK from your project's s
 see \ref HowToNewProject.
 
 
-\subsection NewPluginLimitations Limitations
+<h2>Limitations </h2>
+
 
 The Plugin Generator supports only a very limited set of possible configuration options. For more customizations of your
 project or plugin, you must familiarize yourself with CMake and the generated build system.
@@ -79,13 +82,15 @@ project or plugin, you must familiarize yourself with CMake and the generated bu
 Further, the generator is not able to modify existing projects, it can only create new ones.
 
 
-\section NewPluginBuildSystem Build system for plugins
+<h1>Build system for plugins </h1>
+
 
 Just put new files in your plugin's \c src or \c src/internal directory and edit the \c files.cmake file there.
 If you have any fancy stuff like external libraries and include directories you should have a look at the CMake manual and general MITK build system documentation.
 
 
-\section NewPluginTroubleshooting Troubleshooting
+<h1>Troubleshooting </h1>
+
 
 \par I get "Could not find library" messages and similar stuff when I try to start my project's executable.
 This is mostly due to wrong environment settings. On Windows, make sure that you use the supplied batch files to start

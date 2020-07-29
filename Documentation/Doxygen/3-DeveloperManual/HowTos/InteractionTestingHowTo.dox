@@ -2,9 +2,9 @@
 
 \page InteractionTestingHowTo Interaction Testing in MITK
 
-\tableofcontents
 
-\section RecordingInteractions Recording Interactions
+<h1>Recording Interactions</h1>
+
 To be able to record interactions activate Interaction Event Recorder in MITK-build cmake.
 The following table explains how to step-wise create an interaction sequence, which is necessary for developing interaction tests.
 The given example shows how the AddTool Segmentation Interaction Test was developed.
@@ -22,14 +22,16 @@ Stop recording | Click on stop symbol (red square) in Event Recorder Plugin
 Save record (\<interaction\>.xml) to your testing environment | MITK-Data/InteractionTestData/Interactions/SegmentationInteractor_AddTool.xml
 Save interaction result (Image, Surface, etc.) to your testing environment | InteractionTestData/ReferenceData/SegmentationInteractor_AddTool.nrrd
 
-\section Limitations Limitations
+<h1>Limitations</h1>
+
 <ul>
  <li> No VTK interactions are recorded
  <li> Renderwindows have to stay constant during record (e.g. no resizing)
  <li> Interactions have to follow the new Interaction concept
 </ul>
 
-\section UsingInteractionsInTests Using Interactions in Tests
+<h1>Using Interactions in Tests</h1>
+
 
 In order to use interaction tests, the class mitk::InteractionTestHelper has to be used.
 The usage of this class is explained with an example of the SegmentationTool test.

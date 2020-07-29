@@ -7,7 +7,8 @@ Available sections:
 -# \ref RenderingTests_WhatIsARenderingTest "What is an automatic rendering test?"
 -# \ref RenderingTests_HowToCreateATest "How to create a rendering test"
 
-\section RenderingTests_WhatIsARenderingTest What is an automatic rendering test?
+<h1>What is an automatic rendering test?</h1>
+
 
 An automatic rendering test is a powerful tool to test rendering results automatically via dashboard.
 Regarding rendering lots of different sources influence the output on the screen (e.g. different
@@ -22,12 +23,15 @@ of failure, a difference can be generated to show exactly which pixels are rende
 Implementing automatic rendering tests for algorithms ensures that algorithms deliver the same output
 as they used to do in previous version of MITK.
 
-\section RenderingTests_HowToCreateATest How to create your own automatic rendering test
+<h1>How to create your own automatic rendering test</h1>
+
 
 To create an automatic rendering test you should use an existing test as example
 (e.g. mitkImageVtkMapper2DTest).
 
-\subsection RenderingTests_HowToCreateATest_Sub1 Adding the test to CMake
+<h2>Adding the test to CMake</h2>
+
+
 Like adding any test with parameters to CMake, you have to add a custom test to
 the files.cmake and the corresponding CMakeLists.txt:
 
@@ -70,7 +74,8 @@ It is also possible to set the option -T /path/to/directory/. This option is int
 to save a difference image. This is meant for debugging and should not be used for the final implemenation of a test.
 
 
-\subsection RenderingTests_HowToCreateATest_Sub2 Coding the test
+<h2>Coding the test</h2>
+
 
 Writing the test code is pretty straight forward. In the example of the <em>mitkImageVtkMapper2DTest</em>
 the input parameters are added to a datastorage and rendered into a render window via the

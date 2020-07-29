@@ -2,7 +2,8 @@
 
 \page DICOMTesting MITK DICOM testing
 
-\section DICOMTesting_introduction Introduction
+<h1>Introduction</h1>
+
 
 Reading DICOM data into mitk::Images is a complicated business since DICOM and MITK have very different ideas of images.
 
@@ -12,7 +13,8 @@ into mitk::Images, optionally grouping slices to 3D+t images.
 Since there are so many possible sources for mistakes with any change to this loading process, testing the many
 assumptions implemented in DICOMITKSeriesGDCMReader is worthwhile. This document describes what and how theses kind of tests are implemented.
 
-\section DICOMTesting_problem Problem description
+<h1>Problem description</h1>
+
 
 The task of loading DICOM files into mitk::Images is a challenge because of major differences
 in the way that DICOM and MITK represent images:
@@ -35,7 +37,8 @@ For more background information, see David Clunie's most valuable posts on comp.
  - http://groups.google.com/group/comp.protocols.dicom/browse_thread/thread/5d80bb0b7fafcb81/cf96119e3b024ed8
  - http://groups.google.com/group/comp.protocols.dicom/browse_thread/thread/4568635e083a3fba/e2a8ceec23032601
 
-\section DICOMTesting_testidea Test principle
+<h1>Test principle</h1>
+
 
 The general idea for DICOM loaing tests is to run a set of known DICOM files through DICOMITKSeriesGDCMReader's methods
 GetSeries() and LoadDicomSeries() to generate mitk::Images. These images are then compared to expected image properties,
@@ -76,9 +79,11 @@ Geometry:
 
 
 
-\section DICOMTesting_implementation Implementation
+<h1>Implementation</h1>
 
-\section DICOMTesting_implementation_utils Test helpers (applications and classes)
+
+<h1>Test helpers (applications and classes)</h1>
+
 
 <b>Application DumpDICOMMitkImage</b>
 
@@ -98,7 +103,8 @@ load images, then verify the expected result structure.
 
 <b>Class TestDICOMLoading</b>
 
-\section PageDICOMLoadingTests_testcaseimplementation Test case implementation
+<h1>Test case implementation</h1>
+
 
 Individual test cases are stored in the MITK-Data repository and constructed by Core/Code/Testing/DICOMTesting/Testing/CMakeLists.txt
 
@@ -108,7 +114,8 @@ The CMake file parses given directories for subdirectories containing specific t
 
 Each test case is translated into a CTest test which evaluates the return value of a call to VerifyDICOMMitkImageDump.
 
-\section PageDICOMLoadingTests_testcases Implemented test cases
+<h1>Implemented test cases</h1>
+
 
 From test set \b TinyCTAbdomen (see description.txt in this directory for details on test images):
 
@@ -137,7 +144,8 @@ From test set \b TiltHead (see description.txt in this directory for details on 
  - head_ct_tilt : load a series with gantry tilt and check its orientation
 
 
-\section DICOMTesting_othertests Specific other tests
+<h1>Specific other tests</h1>
+
 
 This list is meant to provide an up-to-date list of all implemented DICOM loading tests.
 <b>If you ever find this outdated, please update it or make the persons who invalidated the list update it.</b>
