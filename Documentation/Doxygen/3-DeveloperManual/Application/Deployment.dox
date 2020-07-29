@@ -1,7 +1,7 @@
 /**
 \page DeploymentPage Deploying MITK
 
-\section DeploymentPageIntroduction Introduction
+<h1>Introduction</h1>
 
 <ul>
   <li> easily create portable or installable versions of your MITK-based applications.
@@ -11,9 +11,9 @@
 
 \note This does not install the MITK headers (like an SDK). If you want to develop applications based on MITK you still have to compile MITK yourself.
 
-\section DeploymentPagePlatform Platform specific notes
+<h1>Platform specific notes</h1>
 
-\subsection DeploymentPagePlatformLinux Linux
+<h2>Linux</h2>
 
 You can create a tarball (.tar.gz) of your MITK application which includes all necessary non-system libraries by following these steps:
 
@@ -25,7 +25,7 @@ You can create a tarball (.tar.gz) of your MITK application which includes all n
 
 \note Libraries in system locations (/lib/, /lib32/, /lib64/, /usr/lib/, /usr/lib32/,/usr/lib64/, and /usr/X11R6/) will not be included in the tarball. If you want to distribute Qt (for example), you have to do a custom Qt installation outside of these directories.
 
-\subsection DeploymentPagePlatformWindows Windows
+<h2>Windows</h2>
 
 You can create a Zip file (.zip) or an NSIS 2 installer (needs an installation of <a href="http://nsis.sourceforge.net/Main_Page">NSIS</a>) for Windows platforms. Only "Release" builds are supported during packaging, the results of trying to package "Debug" builds are undefined.
 
@@ -40,7 +40,7 @@ A CMake variable "CMAKE_(Your Visual Studio Version)_REDISTRIBUTABLE" will be cr
 In the case of the NSIS installer it will be automatically run if no appropriate redistributable is present on the target system.\n
 Please note that it is <b>not</b> possible to automatically check the provided redistributable matches the Visual Studio version used to build the installer.
 
-\subsection DeploymentPagePlatformMacOS macOS
+<h2>macOS</h2>
 
 You can create a drag'n drop disk image (.dmg) file for macOS. The procedure is pretty much the same as for Linux.
 
