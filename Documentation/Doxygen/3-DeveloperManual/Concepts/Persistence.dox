@@ -7,7 +7,10 @@ In general, persistence referes to the capability of an application to permanent
 -# UI dependent code where the Qt library is available can use QSettings: \ref PersistenceQTSetting
 -# If the UI setting of Plugins should be stored permanently, the persistence features of blueberry can be used: \ref PersistenceBlueberry
 -# Extended features, which include persistence, are provided by the configuration service. \ref PersistenceConfigurationService
-\section PersistenceMITKService MITK Persistence Service
+
+
+<h1>MITK Persistence Service</h1>
+
 For persistence of member variables and parameters, the interface mitk::IPersistenceService in the MITK core provides an API to store variables permanently by means of mitk::PropertyList objects. These properties can be stored inside a MITK scene together with the data so that the user loads data and restores the application state at once. The current actual implementation of this interface can be found in the module Persistence. The class mitk::PersistenceService offers a rather simple way to store variables permanently.
 
 To enable MITK persistence inside your class, simply include the persistence interface and use PERSISTENCE_GET_SERVICE_METHOD_MACRO in the private part of your class, as shown in the next code snippet:

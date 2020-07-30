@@ -20,15 +20,7 @@ The modules are shared libraries that provide functionality that can be used by 
   <li> \ref USModulePage
 </ul>
 
-\subpage MITKModuleManualsListPageAdditionalInformation
-<ul>
-  <li> \ref PlanarPropertiesPage
-</ul>
 
-\subpage MITKMigrationGuides
-<ul>
-  <li> \ref GeometryMigration
-  <li> \ref InteractionMigration
-  <li> \ref OverlayMigration
-</ul>
+
+
 */
