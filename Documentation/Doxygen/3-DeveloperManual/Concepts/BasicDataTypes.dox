@@ -1,5 +1,5 @@
 /**
-\page BasicDataTypesPage Numeric MITK data types and their usage.
+\page BasicDataTypesPage Numeric MITK data types and their usage
 
 This page describes how to use very foundational data-tyes in MITK like mitk::Vector, mitk::Point and mitk::Matrix and 
 how they can interact.
