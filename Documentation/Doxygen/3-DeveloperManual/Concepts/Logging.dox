@@ -1,9 +1,8 @@
 /**
 \page LoggingPage Logging Concept
 
-\tableofcontents
 
-\section LoggingPageSection1 Basic Information on Logging
+<h1>Basic Information on Logging</h1>
 To use logging in MITK you can stream your messages into a logging stream, similar to the "std::cout" stream in standard c++. A simple example is shown next.
 \code
 MITK_INFO << "Here comes my message";
@@ -16,7 +15,7 @@ MITK_INFO << "I want to log my vector size: " << m_vector.getSize();
 All logged information will be displayed in the console and be written to a logging file in the MITK binary folder. Advanced users may want to know that this behavior is controlled by the logging backend class, which can be adapted if you want to change the behavior.
 This is everything you need to know about  simple logging. Further reading will show you how you can categorize your logging message and what logging levels are.
 
-\section LoggingPageSection2 Categorize your Logging Messages
+<h1>Categorize your Logging Messages</h1>
 You may also want to categorize your logging messages, so you can assign messages to your specific topic. You can simply add classes and subclasses to your MITK logging messages by using brackets, like shown in the next example.
 \code
 MITK_INFO << "no class";
@@ -25,7 +24,7 @@ MITK_INFO("MyClass")("MySubClass") << "class with subclass";
 \endcode
 This classes makes it easy to e.g. simply filter all logging messages only for relevant information.
 
-\section LoggingPageSection3 Logging Levels
+<h1>Logging Levels</h1>
 MITK offers different logging levels. You may mostly want to use MITK_INFO, but please consider using the other levels,  e.g. when logging debug information or errors.
 
 <b>Debug (MITK_DEBUG)</b>: These messages are designed for debug output, used to debug your source code. Example:
@@ -63,7 +62,7 @@ Example:
 MITK_FATAL << "Memory allocation error during instantiation of image object."
 \endcode
 
-\section LoggingPageSection4 Conditional Logging
+<h1>Conditional Logging</h1>
 Another feature of the logging mechanism is that you can directly give conditions for logging your message. These bool values or expressions can be defined in brackets. An example is shown next.
 \code
 MITK_INFO(x>1000) << "x is too large"; //logs only if x > 1000

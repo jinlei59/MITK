@@ -2,9 +2,7 @@
 
 \page InteractionHowTo Interaction Related Examples in MITK
 
-\tableofcontents
-
-\section EnableDisableCrosshair How to disable/re-enable/modify Display Interaction using Microservices
+<h1>Display Interaction using Microservices</h1>
 
 Display Interaction is implemented as EventObservers that are registered as Microservices. This allows them to be queried and modified from
 anywhere in the code. Application scenarios are e.g. wanting to disable certain interaction during a task, to avoid any conflicting actions,

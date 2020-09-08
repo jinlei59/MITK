@@ -1,9 +1,7 @@
 /**
 \page AnnotationPage Annotation Concept
 
-\tableofcontents
-
-\section AnnotationPage_Introduction Annotations
+<h1>Annotations</h1>
 
 The annotations in MITK are a simple way to display additional information on the render windows. A class, deriving from mitk::Annotation represents an arbitrary
 2D or 3D object that can be rendered as an Annotation. This can for example be used for the annotation of 3D points or to Annotation despriptions in the window corners.
@@ -14,20 +12,21 @@ This module contains implementations for mitk::AbstractAnnotationRenderer as wel
   <li>2D and 3D annotations can be placed freely by providing a display position
   <li>2D annotations can be placed in a layout, which organizes the annotations in the display corners.
 </ol>
-\section AnnotationPage_ArchitectureSection General Architecture
+
+<h1>General Architecture</h1>
 
 The mitk::Annotation can be implemented using a custom rendering framework like VTK. In this diagram, the vtkAnnotation is shown as the superclass for all Annotations which use the vtk framework for rendering.
 The AnnotationManager can be registered to several BaseRenderer instances in order to call the update method of each Annotation during the rendering phase of the renderer.
 It also manages the respective Layouters which are used to manage the placement of a group of Annotations.
 
-\subsection AnnotationPage_AnnotationSubsection Annotation
+<h2>Annotation</h2>
 
 The mitk::Annotation is an abstract class that can manage property lists like the mitk::DataNode and provides the interfaces to the methods
 AddToBaseRenderer, AddToRenderer, RemoveFromBaseRenderer RemoveFromRenderer and Update. The subclasses of the mitk::Annotation have to implement these methods
 in order to provide the functionallity of an Annotation. There are already a few implementations of mitk::Annotation which are using VTK as a rendering
 framework to display the Annotations. In order to show an Annotation, it has to be registered as a MicroService.
 
-\subsection AnnotationPage_AnnotationRendererSubsection AbstractAnnotationRenderer
+<h2>AbstractAnnotationRenderer</h2>
 
 The AbstractAnnotationRenderer is the base class for all types of AnnotationRenderers, which are used for the management of multiple annotations in a specific BaseRenderer.
 For each BaseRenderer, an AnnotationRenderer is registerered as a MicroService, using the type and the renderer name as a unique identifier. This way it is possible to keep the Annotations for a specific BaseRenderer
@@ -36,16 +35,47 @@ even if this renderer is temporarilly not existent (e.g. when a RenderWindow was
 Implementations of the AbstractAnnotationRenderer are using the us::ServiceTracker in order to manage all registered Annotations and to listen to the events which are thrown if a new Annotation is registered,
 if an Annotation was unregistered or if it was modified.
 
-\subsubsection AnnotationPage_ManualPlacementAnnotationRendererSubsection ManualPlacementAnnotationRenderer
+<h2>ManualPlacementAnnotationRenderer</h2>
 
 Using the ManualPlacementAnnotationRenderer, allows for a simple placement of Annotations. The Annotation manages its placement internally or using the Position2D / Position3D properties.
 
-\subsubsection AnnotationPage_LayoutAnnotationRendererSubsection LayoutAnnotationRenderer
+<h2>LayoutAnnotationRenderer</h2>
 
 The LayoutAnnotationRenderer allows automatic placement in the RenderWindow corners and sorts the Annotations by a specified priority.
 
-\subsection AnnotationPage_AnnotationUtilsSubsection AnnotationUtils
+<h2>AnnotationUtils</h2>
 
 mitk::AnnotationUtils is a collection of static convenience functions, for the registration of AnnotationRenderers and to request certain registered Annotations.
+
+<h1> Migration Guide from Overlays to the new Annotation concept: How to adapt your code</h1>
+All classes have been renamed from "Overlay" to "Annotation", e.g. the mitk::TextOverlay2D is now mitk::TextAnnotation2D. Most of the interface of mitk::Overlay remains unchanged in
+mitk::Annotation, but it is no longer registered at the mitk::OverlayManager. Instead, mitk::ManualPlacementAnnotationRenderer and mitk::LayoutAnnotationRenderer are used the register an annotation.
+
+\code
+  // Old Overlay registration:
+  overlayManager->AddOverlay(textOverlay3D.GetPointer(), renderer);
+\endcode
+\code
+  // New Annotation registration:
+  mitk::ManualPlacementAnnotationRenderer::AddAnnotation(textAnnotation3D, renderer);
+\endcode
+
+A single mitk::Annotation is no longer automatically registered in all available RenderWindows. Each mitk::Annotation is shown only once. The user is also responsible for the memory management.
+When a created mitk::Annotation has no more SmartPointer references, it disappears.
+
+The Layouter concept was implemented in the mitk::LayoutAnnotationRenderer:
+\code
+  // Old way to layout an mitk::Overlay:
+  verlayManager->AddOverlay(textOverlay.GetPointer());
+  overlayManager->AddLayouter(
+    mitk::Overlay2DLayouter::CreateLayouter(mitk::Overlay2DLayouter::STANDARD_2D_TOPLEFT(), renderer2D).GetPointer());
+  overlayManager->SetLayouter(textOverlay.GetPointer(), mitk::Overlay2DLayouter::STANDARD_2D_TOPLEFT(), renderer2D);
+\endcode
+\code
+  // New way to layout an mitk::Annotation:
+  mitk::LayoutAnnotationRenderer::AddAnnotation(textAnnotation, rendererID, mitk::LayoutAnnotationRenderer::TopLeft, 5, 5, 1);
+  // The layouter gets parameters for margins and the priority for the placement in the RenderWindow corners.
+\endcode
+
 
 */

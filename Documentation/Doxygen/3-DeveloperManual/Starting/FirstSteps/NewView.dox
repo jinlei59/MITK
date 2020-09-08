@@ -4,7 +4,8 @@
 A plugin can bundle several views. If you want to extend an existing plugin, for example created as in \ref NewPluginPage, by an additional view, you only need to adapt a few files.
 This guide will give you a quick overview of what to do. We assume you are adding the view "Useful Functions View" and use default file names and locations (relative to your plugin folder root).
 
-\section NewViewPageFilesToAdd Files to add
+<h1>Files to add </h1>
+
 
 For a basic view you will have to add the following files (assuming you do not share any icons or other resources):
 
@@ -24,7 +25,7 @@ For a basic view you will have to add the following files (assuming you do not s
  \endcode
 </ul>
 
-\section NewViewPageFilesChanged Files to change
+<h1>Files to change </h1>
 
 The following files need to be adapted:
 

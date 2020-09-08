@@ -9,7 +9,7 @@ this design philosophy, MITK includes many specialized modules.
 This document is aimed at giving an overview of the general structure of MITK. It will give you an introduction to the coding
 and design concepts behind the toolkit.
 
-\section OverviewPage_DesignOverview Design Overview
+<div align="center"><h1>Design Overview </h1></div>
 
 MITK is designed to be used either as a <B>pure software library</B> or as a <B>complete application framework</B>. Thus, a user
 of MITK can decide if he or she simply wants to add a new plug-in to the existing application framework or to implement an

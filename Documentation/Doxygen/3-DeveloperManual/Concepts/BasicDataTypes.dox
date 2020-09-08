@@ -1,12 +1,10 @@
 /**
-\page BasicDataTypesPage Numeric MITK data types and their usage.
+\page BasicDataTypesPage Numeric MITK data types and their usage
 
 This page describes how to use very foundational data-tyes in MITK like mitk::Vector, mitk::Point and mitk::Matrix and 
 how they can interact.
 
-\tableofcontents
-
-\section Structure Structure
+<h2>Structure Structure</h2>
 
 The previously known, monolythic structure of putting every basic type into mitkVector.h has been broken and 
 mitkVector.h has been split up into several, more atomic files, namely:
@@ -23,7 +21,7 @@ mitkVector.h has been split up into several, more atomic files, namely:
 The Equal methods to compare Points, Vectors, Matrices, ... have been moved into the respective files. 
 E.g., if you want to compare two vectors simply use the Equal method provided by mitkVector.h.
 
-\section Conversion Conversion between the data-types
+<h2>Conversion Conversion between the data-types</h2>
 
 If you want to convert a mitk::Vector from or to a vnl_vector or a vnl_vector_fixed, simply write
 

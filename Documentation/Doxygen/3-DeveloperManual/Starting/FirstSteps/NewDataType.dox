@@ -2,10 +2,9 @@
 
 \page NewDataTypePage How to create a new custom data type
 
-\tableofcontents
 
+<h1>Prerequisites and further reading </h1>
 
-\section NewDataTypePagePrerequisites Prerequisites and further reading
 
 We will use some concepts during this tutorial which we assume you are aware of, as well as taking advantage of infrastructure which needs to be set up. The following is a list of prerequisites which should be present to effectively use this tutorial.
 
@@ -22,7 +21,8 @@ Some concepts will only be briefly touched upon in this tutorial, for a more con
 <li> If you want to know more about the mitk rendering see \ref QVTKRendering </li>
 </ul>
 
-\section NewDataTypePageCreatingANewDataType Creating a new data type
+<h1>Creating a new data type </h1>
+
 
 A new data type needs to derive from mitk::BaseData in order to be handled by the mitk::DataStorage via mitk::DataNode. An example of a very simple data type is provided in the example module. This type encapsulates a string.
 
@@ -30,7 +30,8 @@ A new data type needs to derive from mitk::BaseData in order to be handled by th
 
 Overloading mitk::Equal to work with your data type will enable you to write simpler, standardized tests.
 
-\section NewDataTypePageAddingReadersAndWriters Adding readers and writers
+<h1>Adding readers and writers </h1>
+
 
 In order for your data type to be read from and written to disk, you need to implement readers and writers. In order for your readers/writers to be registered and available even if your module has not been loaded (usually after just starting the application), it is advisable to implement them separately in a autoload module. The default location for this is "YourModuleName/autoload/IO".
 
@@ -40,7 +41,8 @@ More information regarding implementing IO and MimeTypes is available at \ref Re
 
 \note{ You do not need to create your own class to manage your MimeTypes. Instead they can be defined within the Reader/Writer. }
 
-\section NewDataTypePageAddingMappers Adding a mapper
+<h1>Adding a mapper </h1>
+
 
 If your data type needs a special way to render its data for the user, you need to implement a new mapper. More information can be found at \ref QVTKRendering.
 

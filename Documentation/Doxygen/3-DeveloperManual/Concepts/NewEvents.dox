@@ -2,19 +2,17 @@
 
 \page ImplementNewEventsPage What needs to be done to implement a new event?
 
-\tableofcontents
-
-\section WhenUseEvents When to use this guide
+<h1>When to use this guide</h1>
 
 In general there are no restriction about how events are created and processed. The intention of this page is to provide how to contruct Events
 in order to use them with the MITK Interaction Concept.
 
-\section OriginEvents Origin and processing of Events
+<h1>Origin and processing of Events</h1>
 
 \ref DataInteractionPage gives a brief description of how events are generated and proccessed. After events are created they need to be send
 via mitk::RenderWindowBase::HandleEvent() so that they are relayed to a Dispatcher which handles the event distribution to the DataInteractors.
 
-\section EventImplementation Event Implementation
+<h1>Event Implementation</h1>
 
 The only prerequisite for a new event to be accepted is that it is derived from the mitk::InteractionEvent class.
 The new event must implement at least two functions,
@@ -55,7 +53,7 @@ bool mitk::MousePressEvent::IsSuperClassOf(InteractionEvent::Pointer baseClass)
 }
 \endcode
 
-\section EventConstruction Configuration File & Event Factory
+<h1>Configuration File & Event Factory</h1>
 
 Regarding the state machine and the state machine pattern parser there are no changes necessary. To be able to parse the new event,
 changes have to be made in the mitk::EventConfig and mitk::EventFactory classes.

@@ -14,7 +14,7 @@ The \ref FirstSteps section will then show you how to extend MITK for your own p
     <li> \ref SupportedPlatformsPage </li>
     <li> \ref BuildInstructionsPage </li>
     <li> \ref thirdpartylibs </li>
-  <li> \ref HowToNewProject </li>
+    <li> \ref HowToNewProject </li>
   </ul>
   <li> \subpage GettingToKnowMITK </li>
   <ul>
@@ -23,16 +23,16 @@ The \ref FirstSteps section will then show you how to extend MITK for your own p
     <li> \ref CMAKE_FAQ </li>
     <li> \ref StyleGuideAndNotesPage </li>
     <li> \ref DocumentationGuide </li>
-    <li> \ref CodingPage </li>
     <li> \ref KnownProblemsPage </li>
+	<li> \ref TroubleshootingPage </li>
   </ul>
   <li> \subpage FirstSteps </li>
   <ul>
     <li> \ref NewPluginPage </li>
-    <li> \ref NewViewPage </li>
-    <li> \ref NewModulePage</li>
-  <li> \ref CMAKE_FAQ </li>
-    <li> \ref StatemachineEditor </li>
+    <li> \ref NewModulePage </li>
+	<li> \ref NewDataTypePage </li>
+	<li> \ref NewViewPage </li>
+	<li> \ref MiniAppCommandLineToolHowToPage </li>
   </ul>
   <li> \subpage AboutTestingPage </li>
 </ul>
