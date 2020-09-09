@@ -870,8 +870,7 @@ EXCLUDE_SYMBOLS        =
 # that contain example code fragments that are included (see the \include
 # command).
 
-EXAMPLE_PATH           = "@MITK_SOURCE_DIR@/Documentation/Snippets/" \
-                         "@MITK_SOURCE_DIR@/Examples/" \
+EXAMPLE_PATH           = "@MITK_SOURCE_DIR@/Examples/" \
                          "@MITK_SOURCE_DIR@/Examples/Tutorial/" \
                          "@MITK_SOURCE_DIR@/Examples/Plugins/" \
                          "@MITK_SOURCE_DIR@/Examples/QtFreeRender/" \
